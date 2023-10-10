@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:50:09 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 07:02:49 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:54:56 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+void	*memcpy(void *dest, const void *src, size_t n);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+char	*ft_strchr(const char *s, int c);
+int		ft_strlcat(char *dest, char *src, unsigned int size);
 
 #endif
