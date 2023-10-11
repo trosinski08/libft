@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:45:24 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 15:46:35 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:17:26 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ void	*ft_memset(void *s, int c, size_t n)
 {
 	int		i;
 	char	*temp;
+	int		t;
 
 	i = 0;
 	temp = (char *)s;
-
-	while (i <= n)
+	t = n;
+	while (i < t)
 	{
 		temp[i] = c;
 		i++;

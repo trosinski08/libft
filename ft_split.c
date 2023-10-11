@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:14:17 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 06:56:27 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:34:20 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ The array of new strings resulting from the split. NULL if the allocation fails
 
 #include "libft.h"
 
-// char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 // {
 // 	int	strlen;
 

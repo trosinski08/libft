@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:41:06 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 15:41:54 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:04:39 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ RETURN VALUE
 The memcpy() function returns a pointer to dest.
 */
 
-void	*memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t			i;
 	unsigned char	*a;

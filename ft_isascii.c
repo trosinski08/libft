@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:32:23 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 06:54:35 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:15:46 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
 	{
-		return (c);
+		return (1);
 	}
 	else
 	{

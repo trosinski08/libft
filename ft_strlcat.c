@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:53:43 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 16:00:58 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:07:40 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ int	ft_strlcat(char *dest, char *src, unsigned int size)
 	return (size + ft_strlen(src));
 }
 
-int	main(void)
-{
-	char	dest[20];
-	char	src[];
-	size_t	result;
+// int	main(void)
+// {
+// 	char	dest[20];
+// 	char	src[];
+// 	size_t	result;
 
-	dest = "Hello, ";
-	src = "world!";
-	result = strlcat(dest, src, 30);
+// 	dest = "Hello, ";
+// 	src = "world!";
+// 	result = strlcat(dest, src, 30);
 
-	printf("Total length: %d\n", ft_strlcat(dest, src, 30));
-	printf("Total length: %zu\n", result);
+// 	printf("Total length: %d\n", ft_strlcat(dest, src, 30));
+// 	printf("Total length: %zu\n", result);
 
-	return (0);
-}
+// 	return (0);
+// }

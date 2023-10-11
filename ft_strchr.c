@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:47:26 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 15:52:13 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:11:25 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
-
 	if (s[0] == '\0')
 	{
-		return ('\0');
+		return ((void *)0);
 	}
 	while (s[i] != '\0')
 	{
