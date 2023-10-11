@@ -6,37 +6,58 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:47:36 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 09:21:40 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:38:02 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_itoa(const char *num)
+int	signcounter(int num)
 {
-	int	i;
-	int	sign;
-	int	conv_value;
+	int	len;
 
-	i = 0;
-	sign = 1;
-	conv_value = 0;
-	while ((num[i] >= 0 && num[i] <= 33) || num[i] == 127)
-		i++;
-	if (num[i] == '\0')
+	len = 0;
+	if (num == 0)
 	{
-		return (0);
+		len = 1;
 	}
-	if (num[i] == '-' || num[i] == '+')
+	if (num < 0)
 	{
-		if (num[i] == '-')
-			sign = -sign;
-		i++;
+		num = -num; 
+		len += 1;
 	}
-	while (num[i] >= '0' && num[i] <= '9')
+	while (num / 10 > 0)
 	{
-		conv_value = (num[i] - '0') + (conv_value * 10);
-		i++;
+		len++;
 	}
-	return (conv_value * sign);
+	return (len);
+}
+
+char	*ft_itoa(int num)
+{
+	int		len;
+	char	*str;
+
+	len = signcounter(num);
+	str = (char *) malloc (len + 1);
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	if (num == 0)
+	{
+		str[0] = '0';
+	}
+	if (num < 0)
+	{
+		str[0] = '-';
+		num = -num;
+	}
+	while (num != 0)
+	{
+		str[len - 1] = (num % 10) + '0';
+		num = num / 10;
+		len--;
+	}
+	return (str);
 }
