@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:14:17 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 19:41:06 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 06:18:18 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@ static	size_t	ft_delcounter(char const *str, char delimiter)
 		if (str[i] == delimiter)
 		{
 			counter++;
+			while (str[i] == delimiter)
+				i ++;
 		}
-		i++;
+		else
+		{
+			i++;
+		}
 	}
 	return (counter);
 }
@@ -53,12 +58,15 @@ static	size_t	str_len(char const *str, char delimiter)
 }
 
 //zwalnia pamiec dla poszczegolnych substr, a po zakonczeniu iteracji cala
-static	void	mem_free(size_t i, char **str_array)
+static	void	mem_free(char **str_array)
 {
-	while (i > 0)
+	size_t	i;
+
+	i = 0;
+	while (str_array[i] != NULL)
 	{
-		i--;
 		free(str_array[i]);
+		i ++;
 	}
 	free(str_array);
 }
@@ -80,7 +88,7 @@ static	char	**helper(char const *str, char del, char **str_array, size_t dc)
 		str_array[i] = ft_substr(str, j, str_len(&str[j], del));
 		if (str_array[i] != (void *)0)
 		{
-			mem_free(i, str_array);
+			mem_free(str_array);
 			return (NULL);
 		}
 		while (str[j] != '\0' && str[j] != del)
@@ -103,7 +111,7 @@ char	**ft_split(char const *str, char delimiter)
 		return (NULL);
 	}
 	delcounter = ft_delcounter(str, delimiter);
-	str_array = (char **)malloc(sizeof(char *) * (delcounter + 1));
+	str_array = (char **)malloc(sizeof(char *) * (delcounter + 2));
 	if (!str_array)
 	{
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:07 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 12:17:53 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 06:00:58 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,44 @@ Allocates (with malloc(3)) and returns a copy of ’s1’ with the characters
 specified in ’set’ removed from the beginning and the end of the string.
 */
 
+static size_t	ft_lenstr(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str[0] == '\0')
+		return (1);
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
 	int		j;
-	int		k;
 	char	*trims;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	trims = (char *)malloc(ft_strlen(s1));
-	if (!trims)
-		return (NULL);
-	while (s1[i] != '\0')
+	trims = 0;
+	if (s1 != 0 && set != 0)
 	{
-		if (s1[i] == set[j])
+		i = 0;
+		j = ft_lenstr(s1);
+		while (s1[i] && ft_strchr(set, s1[i]))
 		{
 			i++;
-			j++;
 		}
-		trims[k] = s1[i];
-		k++;
-		i++;
+		while (s1[j - 1] && ft_strchr(set, s1[j - 1]) && j > i)
+		{
+			j--;
+		}
+		trims = (char *) malloc (sizeof (char) * (j - i + 1));
+		if (trims)
+			ft_strlcpy(trims, &s1[i], j - i + 1);
+		else
+			return (NULL);
 	}
 	return (trims);
 }

@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:36:22 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 13:12:23 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 02:29:57 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*ft_strmapi(char const *str, char (*func)(unsigned int, char))
 
 	i = 0;
 	mapstr = (char *)malloc (sizeof (char) * (ft_strlen(str)) + 1);
-	if (str == NULL)
-		return (NULL);
+	if (!mapstr)
+		return ((void *)0);
 	while (str[i] != '\0')
 	{
 		mapstr[i] = func(i, str[i]);

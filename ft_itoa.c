@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:47:36 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 17:55:13 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 03:47:15 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,20 @@ int	signcounter(int num)
 	len = 0;
 	if (num == 0)
 	{
-		len = 1;
+		return (1);
 	}
 	if (num < 0)
 	{
 		num = -num;
 		len += 1;
 	}
-	while (num / 10 > 0)
+	if (num == -2147483648)
 	{
+		return (11);
+	}
+	while (num != 0)
+	{
+		num /= 10;
 		len++;
 	}
 	return (len);
@@ -35,28 +40,27 @@ int	signcounter(int num)
 
 char	*ft_itoa(int num)
 {
-	int		len;
-	char	*str;
+	unsigned int	len;
+	unsigned int	nbr;
+	char			*str;
 
+	nbr = num;
 	len = signcounter(num);
-	str = (char *) malloc (len + 1);
+	str = (char *) malloc (sizeof(char) * (len + 1));
 	if (str == NULL)
-	{
 		return (NULL);
-	}
-	if (num == 0)
-	{
-		str[0] = '0';
-	}
 	if (num < 0)
 	{
 		str[0] = '-';
-		num = -num;
+		nbr = nbr * -1;
 	}
-	while (num != 0)
+	if (nbr == 0)
+		str[0] = '0';
+	str[len] = '\0';
+	while (nbr != 0)
 	{
-		str[len - 1] = (num % 10) + '0';
-		num = num / 10;
+		str[len - 1] = (nbr % 10) + '0';
+		nbr = nbr / 10;
 		len--;
 	}
 	return (str);
