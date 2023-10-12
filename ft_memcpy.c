@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:41:06 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 16:04:39 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:49:34 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*a;
 	unsigned char	*b;
 
-	if (!dest || !src)
+	if (!dest && !src)
 		return (0);
 	a = (unsigned char *)src;
 	b = (unsigned char *)dest;

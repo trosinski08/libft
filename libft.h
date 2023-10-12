@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:50:09 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 13:37:33 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 00:03:23 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 void	ft_striteri(char *str, void (*f)(unsigned int, char*));
 char	*ft_strjoin(char const *s1, char const *s2);
-int		ft_strlcat(char *dest, char *src, unsigned int size);
+size_t	ft_strlcat(char *dest, const char *source, size_t destsz);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));

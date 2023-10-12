@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:22:57 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 16:26:07 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 02:10:38 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t		i;
 	int			len;
 
-	if (!src || !dst)
-		return (0);
 	len = 0;
 	while (src[len])
 		len++;

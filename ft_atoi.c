@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 05:25:32 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 06:54:49 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 02:13:05 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *num)
 	i = 0;
 	sign = 1;
 	conv_value = 0;
-	while ((num[i] >= 0 && num[i] <= 33) || num[i] == 127)
+	while ((num[i] >= 9 && num[i] <= 13) || num[i] == 32)
 		i++;
 	if (num[i] == '\0')
 	{

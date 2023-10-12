@@ -6,36 +6,45 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:53:43 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 16:07:40 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/11 20:43:34 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+/*
+The strlcpy() and strlcat() functions copy and concatenate strings with the same 
+input parameters and output result as snprintf(3).  They are designed to be 
+safer, more consistent, and less error prone replacements for the easily misused 
+functions strncpy(3) and strncat(3).
+strlcpy() and strlcat() take the full size of the destination buffer and 
+guarantee NUL-termination if there is room.  Note that room for the NUL 
+should be included in dstsize.
+strlcat() appends string src to the end of dst.  It will append at most dstsize
+ - strlen(dst) - 1 characters.  It will then NUL-terminate, unless dstsize is 0
+or the original dst string was longer than dstsize (in practice this should not
+happen as it means that either dstsize is incorrect or that dst is not a proper
+ string). If the src and dst strings overlap, the behavior is undefined.
+*/
 
-int	ft_strlcat(char *dest, char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, const char *source, size_t destsz)
 {
-	unsigned int	i;
-	int				len_dest;
+	size_t	i1;
+	size_t	i2;
 
-	len_dest = ft_strlen(dest);
-	if (!dest || !src)
+	i1 = 0;
+	i2 = 0;
+	while (dest[i1] != '\0' && i1 < destsz)
 	{
-		return (len_dest + ft_strlen(src));
+		i1++;
 	}
-	if (size == 0)
-		return (ft_strlen(src));
-	if ((int)size < 0)
-		size = len_dest + ft_strlen(src) + 1;
-	i = 0;
-	while (len_dest + i < size - 1 && src[i])
+	while (source[i2] != '\0' && (i1 + i2 + 1) < destsz)
 	{
-		dest[len_dest + 1] = src[i];
-		i++;
+		dest[i1 + i2] = source[i2];
+		i2++;
 	}
-	dest[len_dest + i] = '\0';
-	if ((int)size > len_dest)
-		size = len_dest;
-	return (size + ft_strlen(src));
+	if (i1 < destsz)
+		dest[i1 + i2] = '\0';
+	return (i1 + ft_strlen(source));
 }
 
 // int	main(void)

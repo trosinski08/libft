@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:32:11 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/10 17:57:16 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:12:51 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	t = n;
 	temp = (char *)s;
-	while (i <= t)
+	while (i < t)
 	{
-		if (temp[i] == c)
+		if (temp[i] == (char)c)
 		{
 			return ((char *)&temp[i]);
 		}

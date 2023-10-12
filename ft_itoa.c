@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:47:36 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 13:38:02 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:55:13 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	signcounter(int num)
 	}
 	if (num < 0)
 	{
-		num = -num; 
+		num = -num;
 		len += 1;
 	}
 	while (num / 10 > 0)
