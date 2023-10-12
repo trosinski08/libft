@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:53:43 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 20:43:34 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:57:18 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ strlcat() appends string src to the end of dst.  It will append at most dstsize
 or the original dst string was longer than dstsize (in practice this should not
 happen as it means that either dstsize is incorrect or that dst is not a proper
  string). If the src and dst strings overlap, the behavior is undefined.
+ return
+ strlcat() functions return the total length of the string they tried to create
 */
 
 size_t	ft_strlcat(char *dest, const char *source, size_t destsz)

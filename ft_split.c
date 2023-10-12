@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:14:17 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/12 06:18:18 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:12:46 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ static	size_t	ft_delcounter(char const *str, char delimiter)
 
 	counter = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		if (str[i] == delimiter)
+		if (str[i] != delimiter)
 		{
 			counter++;
-			while (str[i] == delimiter)
-				i ++;
+			while (str[i] && str[i] != delimiter)
+			{
+				i++;
+			}
 		}
-		else
+		else if (str[i] == delimiter)
 		{
 			i++;
 		}
@@ -50,7 +52,7 @@ static	size_t	str_len(char const *str, char delimiter)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0' && str[i] != delimiter)
+	while (str[i] && str[i] != delimiter)
 	{
 		i++;
 	}
@@ -58,15 +60,12 @@ static	size_t	str_len(char const *str, char delimiter)
 }
 
 //zwalnia pamiec dla poszczegolnych substr, a po zakonczeniu iteracji cala
-static	void	mem_free(char **str_array)
+static	void	mem_free(size_t i, char **str_array)
 {
-	size_t	i;
-
-	i = 0;
-	while (str_array[i] != NULL)
+	while (i > 0)
 	{
+		i--;
 		free(str_array[i]);
-		i ++;
 	}
 	free(str_array);
 }
@@ -81,17 +80,17 @@ static	char	**helper(char const *str, char del, char **str_array, size_t dc)
 	j = 0;
 	while (i < dc)
 	{
-		while (str[j] != '\0' && str[j] == del)
+		while (str[j] && str[j] == del)
 		{
 			j++;
 		}
 		str_array[i] = ft_substr(str, j, str_len(&str[j], del));
-		if (str_array[i] != (void *)0)
+		if (!str_array[i])
 		{
-			mem_free(str_array);
+			mem_free(i, str_array);
 			return (NULL);
 		}
-		while (str[j] != '\0' && str[j] != del)
+		while (str[j] && str[j] != del)
 		{
 			j++;
 		}
@@ -111,7 +110,7 @@ char	**ft_split(char const *str, char delimiter)
 		return (NULL);
 	}
 	delcounter = ft_delcounter(str, delimiter);
-	str_array = (char **)malloc(sizeof(char *) * (delcounter + 2));
+	str_array = (char **)malloc(sizeof(char *) * (delcounter + 1));
 	if (!str_array)
 	{
 		return (NULL);
