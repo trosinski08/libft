@@ -6,16 +6,13 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:43:39 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/11 20:09:42 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:07:21 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-SYNOPSIS         top
-       #include <string.h>
-
        void *memmove(void dest[.n], const void src[.n], size_t n);
 DESCRIPTION         top
        The memmove() function copies n bytes from memory area src to

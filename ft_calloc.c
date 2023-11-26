@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:58:40 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/12 23:13:40 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/14 02:26:16 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	*ft_calloc(size_t counter, size_t sizer)
 	int		memcap;
 	char	*m;
 
+	if (counter > 2147483647 || sizer > 2147483647)
+		return (NULL);
 	memcap = counter * sizer;
 	m = (char *)malloc(memcap);
 	if (!m)

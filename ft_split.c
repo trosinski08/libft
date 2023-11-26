@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:14:17 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/12 18:12:46 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:03:57 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static	size_t	ft_delcounter(char const *str, char delimiter)
 				i++;
 			}
 		}
-		else if (str[i] == delimiter)
+		else
 		{
 			i++;
 		}

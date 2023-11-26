@@ -6,13 +6,13 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:47:36 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/12 03:47:15 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:15:55 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	signcounter(int num)
+static int	signcounter(int num)
 {
 	int	len;
 

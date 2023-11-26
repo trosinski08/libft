@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:07 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/13 15:07:01 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/11/16 02:21:49 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 /*
 Allocates (with malloc(3)) and returns a copy of ’s1’ with the characters 
 specified in ’set’ removed from the beginning and the end of the string.
+STRCHR
+The strchr() function returns a pointer to the first occurrence
+of the character c in the string s.
 */
 
 static size_t	ft_lenstr(const char *str)
@@ -22,7 +25,7 @@ static size_t	ft_lenstr(const char *str)
 
 	i = 0;
 	if (str[0] == '\0')
-		return (1);
+		i = 1;
 	while (str[i])
 	{
 		i++;
@@ -58,16 +61,3 @@ char	*ft_strtrim(char const	*s1, char const	*set)
 	}
 	return (trims);
 }
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char const	*s1;
-// 	char const	*set;
-
-// 	s1 = "";
-// 	set = "";
-// 	printf("%s\n", ft_strtrim(s1, set));
-// 	printf("%lu\n", (sizeof(ft_strtrim(s1, set))));
-// 	return (0);
-// }

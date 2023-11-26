@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 05:25:32 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/10/12 02:17:55 by trosinsk         ###   ########.fr       */
+/*   Updated: 2023/10/15 03:16:25 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,3 @@ int	ft_atoi(const char *num)
 	}
 	return (conv_value * sign);
 }
-
-// #include <stdlib.h>
-// #include <stdio.h>
-
-// int	main()
-// {
-// 	const char	*num;
-
-// 	num = "-123";
-// 	printf("%d, atoi\n", atoi(num));
-// 	printf("%d, ft_atoi", ft_atoi(num));
-// 	return (0);
-// }

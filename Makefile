@@ -6,7 +6,7 @@
 #    By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 01:54:44 by trosinsk          #+#    #+#              #
-#    Updated: 2023/10/13 00:04:21 by trosinsk         ###   ########.fr        #
+#    Updated: 2023/10/16 00:13:24 by trosinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ GCC = cc
 #FLAGI KOMPILACJI
 FLAGS = -Wall -Wextra -Werror
 
-#NAZWA BIBLIOTEKI
+#NAZWA PROGRAMU
 NAME = libft.a
 
 #LISTA PLIKOW ZRODLOWYCH
@@ -39,11 +39,11 @@ OBJSB = $(BNS:.c=.o)
 all: $(NAME)
 
 #RULE DO ZROBIENIA BIBLIOTEKI
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
-bonus: $(OBJS) $(OBJSB)
+$(NAME): $(OBJS) $(OBJSB)
 	ar rcs $(NAME) $(OBJS) $(OBJSB)
+
+bonus: $(NAME) $(OBJSB)
+	ar rcs $(NAME) $(OBJSB)
 
 #RULE DO STWORZENIA PLIKOW OBIEKTOWYCH
 %.o: %.c
