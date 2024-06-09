@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 09:29:53 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 18:54:41 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 19:15:33 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @param c The character to write.
  * @param fd The file descriptor to write to.
  */
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }
