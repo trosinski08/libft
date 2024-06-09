@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 09:41:57 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:58:27 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:54:50 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Writes a string followed by a newline character to the specified fd.

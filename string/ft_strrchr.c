@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:32:50 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 18:03:01 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:23 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Returns a pointer to the last occurrence of the char 'c' in the string 's'.

@@ -6,58 +6,94 @@
 #    By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 01:54:44 by trosinsk          #+#    #+#              #
-#    Updated: 2023/10/16 00:13:24 by trosinsk         ###   ########.fr        #
+#    Updated: 2024/06/09 17:17:39 by trosinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #COMPILER
-GCC = cc
+CC = cc
 
-#FLAGI KOMPILACJI
+#COMPILATION FLAGS
 FLAGS = -Wall -Wextra -Werror
 
-#NAZWA PROGRAMU
+#PROGRAM NAME
 NAME = libft.a
 
-#LISTA PLIKOW ZRODLOWYCH
-SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c \
-	ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-	ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
-	ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c\
+#SOURCE FILES LIST
+SRCS = ./char/ft_atoi.c \
+		./char/ft_isalnum.c \
+		./char/ft_isalpha.c \
+		./char/ft_isascii.c \
+		./char/ft_isdigit.c \
+		./char/ft_isprint.c \
+		./char/ft_itoa.c \
+		./char/ft_tolower.c \
+		./char/ft_toupper.c \
+		./memory/ft_bzero.c \
+		./memory/ft_calloc.c \
+		./memory/ft_memchr.c \
+		./memory/ft_memcmp.c \
+		./memory/ft_memcpy.c \
+		./memory/ft_memmove.c \
+		./memory/ft_memset.c \
+		./print/ft_putchar_fd.c \
+		./print/ft_putendl_fd.c \
+		./print/ft_putnbr_fd.c \
+		./print/ft_putstr_fd.c \
+		./string/ft_split.c \
+		./string/ft_strchr.c \
+		./string/ft_strdup.c \
+		./string/ft_striteri.c \
+		./string/ft_strjoin.c \
+		./string/ft_strlcat.c \
+		./string/ft_strlcpy.c \
+		./string/ft_strlen.c \
+		./string/ft_strmapi.c \
+		./string/ft_strncmp.c \
+		./string/ft_strnstr.c \
+		./string/ft_strrchr.c \
+		./string/ft_strtrim.c \
+		./string/ft_substr.c \
 	
 
-#funkcje bonusowe
-BNS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
-	ft_lstiter.c ft_lstmap.c
+#BONUS FUNCTIONS
+BNS = ./bonus/ft_lstnew.c \
+		./bonus/ft_lstadd_front.c \
+		./bonus/ft_lstsize.c \
+		./bonus/ft_lstlast.c \
+		./bonus/ft_lstadd_back.c \
+		./bonus/ft_lstdelone.c \
+		./bonus/ft_lstclear.c \
+		./bonus/ft_lstiter.c \
+		./bonus/ft_lstmap.c \
 
-#PLIKI OBIEKTOWE
+#OBJECT FILES CREATIONS
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(BNS:.c=.o)
 
 #ALL RULE
-
 all: $(NAME)
 
-#RULE DO ZROBIENIA BIBLIOTEKI
-$(NAME): $(OBJS) $(OBJSB)
-	ar rcs $(NAME) $(OBJS) $(OBJSB)
+#LIBRARY RULES
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
+#BONUS COMPILER
 bonus: $(NAME) $(OBJSB)
 	ar rcs $(NAME) $(OBJSB)
 
-#RULE DO STWORZENIA PLIKOW OBIEKTOWYCH
+#OBJECT FILES COMPILING
 %.o: %.c
-	$(GCC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 	rm -f $(OBJSB)
 
-#RULE DO CZYSZCZENIA WSZYSTKIEGO
 fclean: clean
 	rm -f $(NAME)
 
-#RULE DO REKOMIPLACJI
+#RULE TO REKOMIPILE
 re: fclean all
 
 .PHONY: all clean fclean re

@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:58:40 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:34:10 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:10 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 /*
 The calloc(), function allocate memory. The allocated memory is aligned 
 such that it can be used for any data type, including AltiVec- and 

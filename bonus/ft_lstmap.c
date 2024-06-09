@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 00:08:51 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:24:38 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:51:57 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ nowa liste i alokuje pamiec, jesli alokacja sie nie powiedzie usuwam element,
 zwalniam pamiec, zwracam null, jesli sie powiedzie dodaj element jako ostatni 
 do listy, iteruje do nastepnego elementu zwracam nowa liste
 */
-#include "../libft.h"
+#include "../include/libft.h"
 /**
  * Applies the function `f` to each element of the linked list `lst` and creates
  * a new list with the results. The `del` function is used to delete the content

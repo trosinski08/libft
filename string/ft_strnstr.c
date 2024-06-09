@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:29:57 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 18:02:39 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:22 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * The ft_strnstr() function locates the first occurrence of

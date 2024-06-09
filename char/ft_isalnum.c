@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 22:39:06 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:53:06 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:01 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Checks if the given character is alphanumeric.

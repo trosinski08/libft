@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 06:29:59 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:37:23 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:55:05 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Writes the integer 'n' to the file descriptor 'fd'.

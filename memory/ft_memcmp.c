@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:58:57 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:57:58 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:53:50 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /*
 The memcmp() function compares the first n bytes (each

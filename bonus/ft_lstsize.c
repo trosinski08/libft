@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 00:11:57 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:25:34 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:56:32 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Counts the number of elements in a linked list.

@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:32:11 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:54:51 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:53:38 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /*
 The memchr() function scans the initial n bytes of the memory

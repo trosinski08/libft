@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:29:25 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 18:01:35 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:22 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Compares two strings up to a specified number of characters.

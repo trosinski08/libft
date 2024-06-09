@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:27:29 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:45:28 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:55:16 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Calculates the length of a null-terminated string.

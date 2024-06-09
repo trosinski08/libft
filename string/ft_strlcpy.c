@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:22:57 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 18:00:37 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:21 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 /*
 	Copy/catenate a string with truncation.
 */

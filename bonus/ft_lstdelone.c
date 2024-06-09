@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 00:10:43 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:23:36 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:51:55 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ remove. This is because we need to change the location to where the previous
 node points to as well
 */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Deletes a single node from a linked list.

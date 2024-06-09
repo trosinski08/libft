@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:35:40 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:59:55 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:19 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Applies the given function to each character of the string,

@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 00:04:29 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:21:22 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:51:42 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 /**
  * @brief Adds an element to the end of the list.
  * 

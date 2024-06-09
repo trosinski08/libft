@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:57:42 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 18:00:19 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:20 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 which is the result of the concatenation of ’s1’ and ’s2’.
 */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Concatenates two strings and returns a new string.

@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:14:17 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:59:01 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:18 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ RETURN
 The array of new strings resulting from the split. NULL if the allocation fails
 */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Counts the number of occurrences of a delimiter in a string.

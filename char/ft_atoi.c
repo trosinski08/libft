@@ -6,11 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 05:25:32 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 17:52:35 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:00 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /**
  * Converts a string representation of an integer to an integer value.
