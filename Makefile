@@ -6,7 +6,7 @@
 #    By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 01:54:44 by trosinsk          #+#    #+#              #
-#    Updated: 2024/06/09 17:17:39 by trosinsk         ###   ########.fr        #
+#    Updated: 2024/06/27 02:02:28 by trosinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,22 +76,22 @@ all: $(NAME)
 
 #LIBRARY RULES
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
 #BONUS COMPILER
 bonus: $(NAME) $(OBJSB)
-	ar rcs $(NAME) $(OBJSB)
+	@ar rcs $(NAME) $(OBJSB)
 
 #OBJECT FILES COMPILING
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJSB)
+	@rm -f $(OBJS)
+	@rm -f $(OBJSB)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 #RULE TO REKOMIPILE
 re: fclean all
