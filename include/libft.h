@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:50:09 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/09 20:06:39 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:51:34 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "../gnl42/include/get_next_line.h"
+# include "../ft_printf/include/ft_printf.h"
 
 typedef struct s_list
 {

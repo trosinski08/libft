@@ -1,22 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/10 01:54:44 by trosinsk          #+#    #+#              #
-#    Updated: 2024/06/09 17:17:39 by trosinsk         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-#COMPILER
 CC = cc
-
-#COMPILATION FLAGS
+GNL = ./gnl42
+PNT_F = ./ft_printf
 FLAGS = -Wall -Wextra -Werror
-
-#PROGRAM NAME
 NAME = libft.a
 
 #SOURCE FILES LIST
@@ -72,11 +57,13 @@ OBJS = $(SRCS:.c=.o)
 OBJSB = $(BNS:.c=.o)
 
 #ALL RULE
-all: $(NAME)
+all: $(NAME) 
 
 #LIBRARY RULES
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
+	@make $(GNL)
+	@make $(PNT_F)
 
 #BONUS COMPILER
 bonus: $(NAME) $(OBJSB)
@@ -89,9 +76,13 @@ bonus: $(NAME) $(OBJSB)
 clean:
 	rm -f $(OBJS)
 	rm -f $(OBJSB)
+	@make clean -C $(GNL)
+	@make clean -C $(PNT_F)
 
 fclean: clean
 	rm -f $(NAME)
+	@make fclean -C $(GNL)
+	@make fclean -C $(PNT_F)
 
 #RULE TO REKOMIPILE
 re: fclean all

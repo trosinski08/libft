@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 00:22:01 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/24 21:39:10 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:52:18 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int				non_minus_conv(long nbr, t_format *f, int len);
 int				zero_printer(int zero_len);
 int				hash_conv(t_format *f);
 //./utils
-char			*ft_strchr(const char *s, int c);
-size_t			ft_strlen(const char *str);
 int				flag_checker(long nbr, t_format *f);
 int				minus_nbr(t_format *f);
 int				space_conv(void);
