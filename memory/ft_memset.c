@@ -38,12 +38,10 @@ void	*ft_memset(void *s, int c, size_t n)
 
 	i = 0;
 	temp = (char *)s;
-	printf("S: %d\n", c);
 	write(1, &c, 1);
 	while (i < n)
 	{
 		temp[i] = c;
-		printf("S: %d\n", temp[i]);
 		i++;
 	}
 	return (s);
