@@ -6,7 +6,7 @@
 #    By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 01:54:44 by trosinsk          #+#    #+#              #
-#    Updated: 2024/06/24 22:10:17 by trosinsk         ###   ########.fr        #
+#    Updated: 2024/06/11 23:13:43 by trosinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,9 @@ FLAGS = -Wall -Wextra -Werror
 
 #PROGRAM NAME
 NAME := libftprintf.a
-INCLUDE := -I./include
-LIBFT_INCLUDE := -I./include
-
-#LIST OF SOURC FILES
+INCLUDE := -I./include -I../include
+LIBFT_INCLUDE := -I../include
+#SOURCE FILES LIST
 SRCS = ./mandatory/ft_printf.c  \
 		./mandatory/print_digit.c \
 		./mandatory/print_h_up.c \
@@ -29,43 +28,43 @@ SRCS = ./mandatory/ft_printf.c  \
 		./mandatory/print_point.c \
 		./mandatory/print_string.c \
 		./mandatory/ft_putchar.c \
+		./mandatory/put_nbr_base.c \
 		./mandatory/print_char.c \
-		./utils/digit_utils.c \
-		./utils/digit_utils2.c \
-		./utils/ft_strchr.c \
-		./utils/ft_strlen.c \
-# ./bonus/flag_spec.c
+		./utils/nbr_utils.c
 
 	
-BNS = ./bonus/flag_spec.c \
+BNS = ./bonus/flag_spec.c
 	
-#OBJECT FILES
+#PLIKI OBIEKTOWE
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(BNS:.c=.o)
 
-#MAIN RULE
+#ALL RULE
 all: $(NAME)
 
-#RULE TO COMPILE PROGRAM
-$(NAME): $(OBJS) $(OBJSB)
-	ar rcs $(NAME) $(OBJS) $(OBJSB)
+#RULE DO ZROBIENIA BIBLIOTEKI
+$(NAME): $(OBJS)
+	$(MAKE) -C ../
+	cp ../libft.a $(NAME)
+	ar rcs $(NAME) $(OBJS)
 	
 bonus: $(NAME) $(OBJSB)
 	ar rcs $(NAME) $(OBJSB)
+	# ar rcs $(NAME) $(LIBFT)/libft.a
 
-#RULE TO CREATE OBJECT FILES
+#RULE DO STWORZENIA PLIKOW OBIEKTOWYCH
 %.o: %.c
 	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
-#RULE TO CLEAN
 clean:
 	rm -f $(OBJS) $(OBJSB)
+# $(MAKE) -C $(LIBFT) clean
 
-#RULE TO CLEAN ALL FILES
+#RULE DO CZYSZCZENIA WSZYSTKIEGO
 fclean: clean
 	rm -f $(NAME)
-	
-#RULE TO REKOMPILATION
+# $(MAKE) -C $(LIBFT) fclean
+#RULE DO REKOMIPLACJI
 re: fclean all
 
 .PHONY: all clean fclean re bonus init

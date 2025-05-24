@@ -6,20 +6,12 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 03:51:09 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/24 22:26:26 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/12 02:32:24 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-/**
- * @brief Handles the case when the precision is specified with a dot.
- * 
- * @param f The format structure.
- * @param str The string to be printed.
- * @param len The length of the string.
- * @return The number of characters printed.
- */
 int	dot_menager(t_format *f, char *str, int len)
 {
 	int	i;
@@ -43,19 +35,11 @@ int	dot_menager(t_format *f, char *str, int len)
 		if (i == -1)
 			return (-1);
 		j++;
-		f->type = 0;
+		f ->type = 0;
 	}
 	return (i);
 }
 
-/**
- * @brief Handles the case when the minus flag is specified.
- * 
- * @param f The format structure.
- * @param str The string to be printed.
- * @param len The length of the string.
- * @return The number of characters printed.
- */
 int	minus_menager(t_format *f, char *str, int len)
 {
 	int	i;
@@ -72,7 +56,7 @@ int	minus_menager(t_format *f, char *str, int len)
 			i += ft_putchar((int)str[i]);
 			if (i == -1)
 				return (-1);
-			f->type = 0;
+			f ->type = 0;
 		}
 	}
 	else
@@ -84,14 +68,6 @@ int	minus_menager(t_format *f, char *str, int len)
 	return (i);
 }
 
-/**
- * @brief Handles the case when the width is specified.
- * 
- * @param f The format structure.
- * @param str The string to be printed.
- * @param len The length of the string.
- * @return The number of characters printed.
- */
 int	d_menager(t_format *f, char *str, int len)
 {
 	int	i;
@@ -108,7 +84,7 @@ int	d_menager(t_format *f, char *str, int len)
 			i += ft_putchar((int)str[i]);
 			if (i == -1)
 				return (-1);
-			f->type = 0;
+			f ->type = 0;
 		}
 	}
 	else
@@ -120,14 +96,6 @@ int	d_menager(t_format *f, char *str, int len)
 	return (i);
 }
 
-/**
- * @brief Handles the case when the string is printed without any formatting.
- * 
- * @param str The string to be printed.
- * @param len The length of the string.
- * @param i The current count of characters printed.
- * @return The number of characters printed.
- */
 int	str_menager(char *str, int len, int i)
 {
 	if (str == NULL)
@@ -137,13 +105,6 @@ int	str_menager(char *str, int len, int i)
 	return (i);
 }
 
-/**
- * @brief Prints a string according to the specified format.
- * 
- * @param str The string to be printed.
- * @param f The format structure.
- * @return The number of characters printed.
- */
 int	print_string(char *str, t_format *f)
 {
 	int	i;
@@ -165,7 +126,7 @@ int	print_string(char *str, t_format *f)
 		i = d_menager(f, str, len);
 	else
 		i += str_menager(str, len, i);
-	f->width = 0;
-	f->type = 0;
+	f ->width = 0;
+	f ->type = 0;
 	return (i);
 }

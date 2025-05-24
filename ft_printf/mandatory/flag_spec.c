@@ -6,22 +6,11 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 03:32:30 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/24 22:13:16 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:19:17 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
-/**
- * @brief Sets the flag specifications based on the given character.
- * 
- * This function sets the flag specifications in the t_format structure based
- * on the given character. The flag specifications include zero padding,
- * width, precision, minus, dot, plus, space, and hash.
- * 
- * @param fspec The character representing the flag specification.
- * @param flags A pointer to the t_format structure 
- * to store the flag specifications.
- */
 
 void	flag_spec(char fspec, t_format *flags)
 {
@@ -31,9 +20,9 @@ void	flag_spec(char fspec, t_format *flags)
 	{
 		flags->type = flags->type * 10 + (fspec - '0');
 		if (flags->dot == 0)
-			flags->width = flags->width * 10 + (fspec - '0');
+			flags->width = flags->type;
 		else
-			flags->prec = flags->prec * 10 + (fspec - '0');
+			flags->prec = flags->type;
 	}
 	if (fspec == '-')
 		flags->minus = 1;

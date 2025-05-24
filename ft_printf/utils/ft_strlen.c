@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 09:29:53 by trosinsk          #+#    #+#             */
-/*   Updated: 2023/11/24 23:59:56 by trosinsk         ###   ########.fr       */
+/*   Created: 2023/10/10 16:27:29 by trosinsk          #+#    #+#             */
+/*   Updated: 2023/11/25 21:54:47 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_putchar(char c)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	i += write(1, &c, 1);
+	while (str[i])
+		i++;
 	return (i);
 }

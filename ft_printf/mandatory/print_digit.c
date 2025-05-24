@@ -1,62 +1,42 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*                      int	print_digit(long nbr, int base)
+{
+	char	buffer[32];
+	int		len;
+	int		i;
+
+	if (nbr < 0)
+		nbr = -nbr;
+	i = 0;
+	if (nbr == 0)
+	{
+		buffer[i++] = '0';
+	}
+	else
+	{
+		while (nbr)
+		{
+			buffer[i++] = "0123456789abcdef"[nbr % base];
+			nbr /= base;
+		}
+	}
+	len = i;
+	while (--i >= 0)
+		write(1, &buffer[i], 1);
+	return (len);                                         */
 /*                                                        :::      ::::::::   */
 /*   print_digit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 02:00:45 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/24 22:19:16 by trosinsk         ###   ########.fr       */
+/*   Updated: 2024/06/24 02:09:40 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-/**
- * @file print_digit.c
- * @brief Contains functions for printing digits with various formatting options.
- */
-
-/**
- * @brief Handles the case when the precision is less than or equal to 0.
- *        Prints the necessary number of spaces and handles the plus sign.
- * @param len The length of the number to be printed.
- * @param f The format specifier.
- * @param i The current count of characters written.
- * @return The updated count of characters written.
- */
-// static int	prec_min(int len, t_format *f, int i);
-
-/**
- * @brief Handles the case when the conversion type is not specified.
- *        Prints the necessary number of spaces.
- * @param f The format specifier.
- * @param i The current count of characters written.
- * @return The updated count of characters written.
- */
-// static int	min_conv(t_format *f, int i);
-
-/**
- * @brief Handles the case when the minus flag is not set.
- *        Prints the necessary number of zeros, spaces, and the number itself.
- * @param nbr The number to be printed.
- * @param f The format specifier.
- * @param len The length of the number to be printed.
- * @return The count of characters written.
- */
-// int	non_minus_conv(long nbr, t_format *f, int len);
-
-/**
- * @brief Prepares and prints the digit with the specified base 
- * and formatting options.
- * @param nbr The number to be printed.
- * @param base The base of the number.
- * @param f The format specifier.
- * @return The count of characters written.
- */
-// int	print_digit_prep(long nbr, int base, t_format *f);
-
-static int	prec_min(int len, t_format *f, int i)
+static int	prec_min(t_format *f, int i)
 {
 	int	count;
 
@@ -70,41 +50,80 @@ static int	prec_min(int len, t_format *f, int i)
 	}
 	while (i < count)
 		i += write(1, " ", 1);
-	len = 0;
 	return (i);
 }
 
 static int	min_conv(t_format *f, int i)
 {
-	f -> type = 0;
+	f->type = 0;
 	while (i < f->width)
 		i += write(1, " ", 1);
 	return (i);
 }
 
-int	non_minus_conv(long nbr, t_format *f, int len)
+
+int	non_minus_conv(long nbr, t_format *f, int len, int base)
 {
 	int		i;
 	int		zero_len;
 	int		space_len;
+	int		count;
 	char	c;
 
 	i = 0;
+	count = 0;
+	zero_len = 0;
+	space_len = 0;
 	c = ' ';
 	if (f->zero == 1 && f->minus == 0 && f->prec <= 0 && !f->dot)
 		c = '0';
 	if (f->prec == 0 && nbr == 0 && f->dot == 1)
-		i += prec_min(len, f, i);
-	zero_len = zero_len_calc(f, len, nbr);
-	space_len = space_len_calc(f, len, nbr, c);
-	if (c == '0')
-		i += flag_checker(nbr, f);
+		i += prec_min(f, i);
+	if (f->prec >= len)
+	{
+		if (nbr < 0 || f->plus == 1 || f->space == 1)
+			zero_len = f->prec - len + 1;
+		else
+			zero_len = f->prec - len;
+	}
+	if (f->width > len && f->width > f->prec && f->minus == 0)
+		space_len = f->width - len - zero_len;
+	if (nbr < 0 && c == '0')
+	{
+		i += minus_nbr(nbr, base, f);
+		space_len++;
+	}
+	else if ((f ->plus == 1 && nbr >= 0) && c == '0')
+	{
+		i += plus_conv(nbr, base, f);
+		space_len++;
+	}
+	else if ((f ->space == 1 && nbr >= 0 && f->minus == 0) && c == '0')
+	{
+		i += space_conv(nbr, base, f);
+		space_len++;
+	}
 	while (i < space_len)
 		i += write(1, &c, 1);
-	if (c != '0')
-		i += flag_checker(nbr, f);
-	if (zero_len > 0)
-		i += zero_printer(zero_len);
+	if (f->hash == 1 && nbr != 0)
+	{
+		if (f->type == 'X')
+			i += write(1, "0X", 2);
+		else if (f->type == 'x')
+			i += write(1, "0x", 2);
+		f->hash = 0;
+	}
+	if (nbr < 0 && c != '0')
+		i += minus_nbr(nbr, base, f);
+	else if (((f ->plus == 1 && nbr >= 0) && c != '0'))
+		i += plus_conv(nbr, base, f);
+	else if (f ->space == 1 && nbr >= 0  && c != '0')
+		i += space_conv(nbr, base, f);
+	while (count < zero_len)
+	{
+		i += write(1, "0", 1);
+		count++;
+	}
 	return (i);
 }
 
@@ -115,7 +134,7 @@ int	print_digit_prep(long nbr, int base, t_format *f)
 
 	i = 0;
 	len = ft_digit_len(nbr, base, f);
-	i += non_minus_conv(nbr, f, len);
+	i += non_minus_conv(nbr, f, len, base);
 	if (f->prec >= 0)
 		i += print_digit(nbr, base);
 	if (f->minus == 1)
