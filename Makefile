@@ -1,8 +1,28 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/10 01:54:44 by trosinsk          #+#    #+#              #
+#    Updated: 2023/10/16 00:13:24 by trosinsk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#COMPILER
 CC = cc
+
+# Compiler flags
+FLAGS = -Wall -Wextra -Werror
+
+# Library name and module paths
+NAME = libft.a
 GNL = ./gnl42
 PNT_F = ./ft_printf
-FLAGS = -Wall -Wextra -Werror
-NAME = libft.a
+
+# Include directories
+INCLUDES = -I./include -I$(GNL)/include -I$(PNT_F)/include
 
 #SOURCE FILES LIST
 SRCS = ./char/ft_atoi.c \
@@ -56,35 +76,80 @@ BNS = ./bonus/ft_lstnew.c \
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(BNS:.c=.o)
 
-#ALL RULE
-all: $(NAME) 
+# ========================= MAIN RULES ==========================
 
-#LIBRARY RULES
+# Standard build - core libft functions
+all: $(NAME)
+
+# Compile the base library 
 $(NAME): $(OBJS)
+	@echo "\033[0;34mCompiling base libft functions...\033[0m"
 	ar rcs $(NAME) $(OBJS)
-	@make $(GNL)
-	@make $(PNT_F)
+	@echo "\033[0;32mBase libft compilation complete!\033[0m"
 
-#BONUS COMPILER
+# Add bonus functions (linked lists) to the library
 bonus: $(NAME) $(OBJSB)
+	@echo "\033[0;34mAdding bonus functions to the library...\033[0m"
 	ar rcs $(NAME) $(OBJSB)
+	@echo "\033[0;32mBonus functions added successfully!\033[0m"
 
-#OBJECT FILES COMPILING
+# Build printf module
+printf:
+	@echo "\033[0;34mCompiling ft_printf module...\033[0m"
+	@make -C $(PNT_F)
+	@echo "\033[0;32mft_printf module compiled and added to libft.a!\033[0m"
+
+# Build get_next_line module
+gnl:
+	@echo "\033[0;34mCompiling get_next_line module...\033[0m"
+	@make -C $(GNL)
+	@echo "\033[0;32mget_next_line module compiled and added to libft.a!\033[0m"
+
+# Build everything (complete library)
+complete: all bonus
+	@echo "\033[0;34mCompiling additional modules (ft_printf and get_next_line)...\033[0m"
+	@make -C $(PNT_F)
+	@make -C $(GNL)
+	@echo "\033[0;32mComplete libft library compiled successfully!\033[0m"
+
+# ========================= UTILITY RULES ==========================
+
+# Compile object files from source files
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
+# Clean object files
 clean:
+	@echo "\033[0;33mCleaning object files...\033[0m"
 	rm -f $(OBJS)
 	rm -f $(OBJSB)
 	@make clean -C $(GNL)
 	@make clean -C $(PNT_F)
+	@echo "\033[0;32mObject files cleaned successfully!\033[0m"
 
+# Full clean (objects and binary)
 fclean: clean
+	@echo "\033[0;33mRemoving library file...\033[0m"
 	rm -f $(NAME)
 	@make fclean -C $(GNL)
 	@make fclean -C $(PNT_F)
+	@echo "\033[0;32mAll generated files removed successfully!\033[0m"
 
-#RULE TO REKOMIPILE
+# Recompile everything
 re: fclean all
 
-.PHONY: all clean fclean re
+# Help command to display available targets
+help:
+	@echo "\033[1;37m==================== LIBFT MAKEFILE HELP ====================\033[0m"
+	@echo "\033[0;36mmake all\033[0m        : Compile core libft functions"
+	@echo "\033[0;36mmake bonus\033[0m      : Add linked list functions to the library"
+	@echo "\033[0;36mmake printf\033[0m     : Compile ft_printf module"
+	@echo "\033[0;36mmake gnl\033[0m        : Compile get_next_line module"
+	@echo "\033[0;36mmake complete\033[0m   : Compile everything into one library"
+	@echo "\033[0;36mmake clean\033[0m      : Remove object files"
+	@echo "\033[0;36mmake fclean\033[0m     : Remove object files and library"
+	@echo "\033[0;36mmake re\033[0m         : Recompile everything"
+	@echo "\033[0;36mmake help\033[0m       : Display this help message"
+	@echo "\033[1;37m=============================================================\033[0m"
+
+.PHONY: all bonus printf gnl complete clean fclean re help

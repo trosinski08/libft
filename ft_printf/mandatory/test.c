@@ -38,5 +38,10 @@ int	main(void)
 	%-5.x, %-5.x", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 	printf("\nbytes\t:%d\n", p4);
 	ft_printf("\n-----------------TEST-----------------\n");
+	if (p1 != p2 || p3 != p4)
+	{
+		ft_printf("Error: Output mismatch between ft_printf and printf.\n");
+		return (1);
+	}
 	return (0);
 }

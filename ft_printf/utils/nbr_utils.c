@@ -36,15 +36,18 @@ int	ft_itoa_base(char *buffer, unsigned long long n, int base, int uppercase)
 {
 	int		i;
 	char	digit;
-	char	*digits;
+	char	*digits_set;
 
-	digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+	if (uppercase)
+		digits_set = "0123456789ABCDEF";
+	else
+		digits_set = "0123456789abcdef";
 	i = 0;
 	if (n == 0)
 		buffer[i++] = '0';
 	while (n)
 	{
-		digit = digits[n % base];
+		digit = digits_set[n % base];
 		buffer[i++] = digit;
 		n /= base;
 	}

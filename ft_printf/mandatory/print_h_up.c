@@ -14,7 +14,6 @@
 
 static int	min_conv(t_format *f, int i)
 {
-
 	f -> type = 0;
 	while (i < f->width)
 		i += write(1, " ", 1);

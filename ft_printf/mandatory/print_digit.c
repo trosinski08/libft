@@ -1,5 +1,18 @@
 /* ************************************************************************** */
-/*                      int	print_digit(long nbr, int base)
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_digit.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 02:00:45 by trosinsk          #+#    #+#             */
+/*   Updated: 2024/05/25 00:00:00 by trosinsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/ft_printf.h" // Includes nbr_utils.h indirectly if setup
+
+int	print_digit(long nbr, int base)
 {
 	char	buffer[32];
 	int		len;
@@ -23,18 +36,8 @@
 	len = i;
 	while (--i >= 0)
 		write(1, &buffer[i], 1);
-	return (len);                                         */
-/*                                                        :::      ::::::::   */
-/*   print_digit.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 02:00:45 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/06/24 02:09:40 by trosinsk         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/ft_printf.h"
+	return (len);
+}
 
 static int	prec_min(t_format *f, int i)
 {
@@ -61,70 +64,28 @@ static int	min_conv(t_format *f, int i)
 	return (i);
 }
 
-
 int	non_minus_conv(long nbr, t_format *f, int len, int base)
 {
-	int		i;
-	int		zero_len;
-	int		space_len;
-	int		count;
-	char	c;
+	int		printed_total;
+	char	pad_char_for_width;
+	int		precision_zeros;
+	int		width_padding;
+	int		combined_arg;
 
-	i = 0;
-	count = 0;
-	zero_len = 0;
-	space_len = 0;
-	c = ' ';
-	if (f->zero == 1 && f->minus == 0 && f->prec <= 0 && !f->dot)
-		c = '0';
+	printed_total = 0;
+	pad_char_for_width = get_padding_char(f);
 	if (f->prec == 0 && nbr == 0 && f->dot == 1)
-		i += prec_min(f, i);
-	if (f->prec >= len)
 	{
-		if (nbr < 0 || f->plus == 1 || f->space == 1)
-			zero_len = f->prec - len + 1;
-		else
-			zero_len = f->prec - len;
+		printed_total += prec_min(f, 0);
+		return (printed_total);
 	}
-	if (f->width > len && f->width > f->prec && f->minus == 0)
-		space_len = f->width - len - zero_len;
-	if (nbr < 0 && c == '0')
-	{
-		i += minus_nbr(nbr, base, f);
-		space_len++;
-	}
-	else if ((f ->plus == 1 && nbr >= 0) && c == '0')
-	{
-		i += plus_conv(nbr, base, f);
-		space_len++;
-	}
-	else if ((f ->space == 1 && nbr >= 0 && f->minus == 0) && c == '0')
-	{
-		i += space_conv(nbr, base, f);
-		space_len++;
-	}
-	while (i < space_len)
-		i += write(1, &c, 1);
-	if (f->hash == 1 && nbr != 0)
-	{
-		if (f->type == 'X')
-			i += write(1, "0X", 2);
-		else if (f->type == 'x')
-			i += write(1, "0x", 2);
-		f->hash = 0;
-	}
-	if (nbr < 0 && c != '0')
-		i += minus_nbr(nbr, base, f);
-	else if (((f ->plus == 1 && nbr >= 0) && c != '0'))
-		i += plus_conv(nbr, base, f);
-	else if (f ->space == 1 && nbr >= 0  && c != '0')
-		i += space_conv(nbr, base, f);
-	while (count < zero_len)
-	{
-		i += write(1, "0", 1);
-		count++;
-	}
-	return (i);
+	precision_zeros = get_precision_zeros_len(nbr, f, len);
+	width_padding = get_width_padding_len(f, len, precision_zeros);
+	combined_arg = (width_padding << 8) | (unsigned char)pad_char_for_width;
+	printed_total += apply_width_padding_and_sign(nbr, f, base, combined_arg);
+	printed_total += print_hash_flag_prefix(nbr, f);
+	printed_total += print_padding_chars(precision_zeros, '0');
+	return (printed_total);
 }
 
 int	print_digit_prep(long nbr, int base, t_format *f)

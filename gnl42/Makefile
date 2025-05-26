@@ -2,7 +2,7 @@ NAME = libgnl.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 BUFFER_SIZE = 32
-HEADERS = -I ./include
+HEADERS = -I ./include -I ../include
 SRC = ./source/get_next_line.c 
 OBJS = $(SRC:.c=.o)
 # BNO = $(BNS:.c=.o)

@@ -12,8 +12,7 @@
 
 #include "../include/ft_printf.h"
 
-int	minus_nbr(long nbr __attribute__((unused)), int base __attribute__((unused)), 
-		t_format *f)
+int	minus_nbr(t_format *f)
 {
 	int	i;
 
@@ -26,8 +25,7 @@ int	minus_nbr(long nbr __attribute__((unused)), int base __attribute__((unused))
 	return (i);
 }
 
-int	plus_conv(long nbr __attribute__((unused)), int base __attribute__((unused)), 
-		t_format *f __attribute__((unused)))
+int	plus_conv(t_format *f)
 {
 	int	i;
 
@@ -35,11 +33,12 @@ int	plus_conv(long nbr __attribute__((unused)), int base __attribute__((unused))
 	i += write(1, "+", 1);
 	if (i == -1)
 		return (-1);
+	f->plus = 0;
+	f->space = 0;
 	return (i);
 }
 
-int	space_conv(long nbr __attribute__((unused)), int base __attribute__((unused)), 
-		t_format *f __attribute__((unused)))
+int	space_conv(t_format *f)
 {
 	int	i;
 
@@ -47,6 +46,8 @@ int	space_conv(long nbr __attribute__((unused)), int base __attribute__((unused)
 	i += write(1, " ", 1);
 	if (i == -1)
 		return (-1);
+	f->plus = 0;
+	f->space = 0;
 	return (i);
 }
 
@@ -80,8 +81,6 @@ int	ft_digit_len(long nbr, int base, t_format *f)
 	temp = nbr;
 	if ((f->plus == 1 || f->space == 1) && nbr >= 0)
 		i++;
-	// if (f->hash == 1 && nbr != 0)
-	// 	i += 2;
 	if (temp < 0)
 	{
 		temp *= -1;
@@ -94,4 +93,3 @@ int	ft_digit_len(long nbr, int base, t_format *f)
 	}
 	return (i);
 }
-

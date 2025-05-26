@@ -58,8 +58,8 @@
  * @param fd The file descriptor to read from.
  * @return The next line from the file descriptor, or NULL if an error 
  * occurs or the end of the file is reached.
- */
-
+*/
+//l_c == line cleaner
 char	*l_c(char *str)
 {
 	char	*rest_line;
