@@ -21,6 +21,22 @@ NAME = libft.a
 GNL = ./gnl42
 PNT_F = ./ft_printf
 
+# Explicit object files for GNL
+# Assuming gnl42/Makefile compiles both and places them in its 'source' subdir
+GNL_OBJS = $(GNL)/source/get_next_line.o
+# Explicit object files for ft_printf
+PRINTF_OBJS = \
+    $(PNT_F)/mandatory/ft_printf.o \
+    $(PNT_F)/mandatory/print_digit.o \
+    $(PNT_F)/mandatory/print_h_up.o \
+    $(PNT_F)/mandatory/print_hexa.o \
+    $(PNT_F)/mandatory/print_point.o \
+    $(PNT_F)/mandatory/print_string.o \
+    $(PNT_F)/mandatory/ft_putchar.o \
+    $(PNT_F)/mandatory/put_nbr_base.o \
+    $(PNT_F)/mandatory/print_char.o \
+    $(PNT_F)/utils/nbr_utils.o
+
 # Include directories
 INCLUDES = -I./include -I$(GNL)/include -I$(PNT_F)/include
 
@@ -99,7 +115,7 @@ printf:
 	@echo "\\033[0;34mCompiling ft_printf module (if needed)...\\033[0m"
 	@$(MAKE) -C $(PNT_F)
 	@echo "\\033[0;34mAdding ft_printf objects to $(NAME)...\\033[0m"
-	ar rcs $(NAME) $(shell find $(PNT_F) -name '*.o')
+	ar rcs $(NAME) $(PRINTF_OBJS)
 	@echo "\\033[0;32mft_printf module compiled and added to $(NAME)!\\033[0m"
 
 # Build get_next_line module
@@ -107,7 +123,7 @@ gnl:
 	@echo "\\033[0;34mCompiling get_next_line module (if needed)...\\033[0m"
 	@$(MAKE) -C $(GNL)
 	@echo "\\033[0;34mAdding get_next_line objects to $(NAME)...\\033[0m"
-	ar rcs $(NAME) $(shell find $(GNL)/source -name '*.o')
+	ar rcs $(NAME) $(GNL_OBJS)
 	@echo "\\033[0;32mget_next_line module compiled and added to $(NAME)!\\033[0m"
 
 # Build everything (complete library)

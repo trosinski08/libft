@@ -16,7 +16,7 @@
 # define FLAG_LIST "-0.# +123456789"
 # define SPEC_LIST "cspdiuxX%"
 
-# include "../include/libft.h"
+# include "../../include/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>

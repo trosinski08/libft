@@ -28,8 +28,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-// # include "../gnl42/include/get_next_line.h"
-// # include "../ft_printf/include/ft_printf.h"
+# include "../gnl42/include/get_next_line.h"
+# include "../ft_printf/include/ft_printf.h"
 
 /**
  * @brief Structure for a linked list node
@@ -382,6 +382,17 @@ size_t	ft_strlen(const char *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 /**
+ * @brief Compares two strings (strcmp replacement)
+ *
+ * Compares the strings s1 and s2 lexicographically.
+ * 
+ * @param s1 First string
+ * @param s2 Second string
+ * @return <0 if s1<s2, 0 if s1=s2, >0 if s1>s2
+ */
+int		ft_strcmp(const char *s1, const char *s2);
+
+/**
  * @brief Compares two strings (strncmp replacement)
  *
  * Compares the first n characters of strings s1 and s2.
@@ -541,5 +552,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
  * @return The new list, or NULL if allocation fails
  */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
 
 #endif
