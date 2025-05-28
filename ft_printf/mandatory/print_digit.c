@@ -73,7 +73,7 @@ int	non_minus_conv(long nbr, t_format *f, int len, int base)
 	int		combined_arg;
 
 	printed_total = 0;
-	pad_char_for_width = get_padding_char(f);
+	pad_char_for_width = determine_padding_char(f);
 	if (f->prec == 0 && nbr == 0 && f->dot == 1)
 	{
 		printed_total += prec_min(f, 0);

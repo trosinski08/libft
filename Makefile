@@ -59,6 +59,7 @@ SRCS = ./char/ft_atoi.c \
 		./string/ft_strrchr.c \
 		./string/ft_strtrim.c \
 		./string/ft_substr.c \
+		./string/ft_strcmp.c
 	
 
 #BONUS FUNCTIONS
@@ -95,22 +96,23 @@ bonus: $(NAME) $(OBJSB)
 
 # Build printf module
 printf:
-	@echo "\033[0;34mCompiling ft_printf module...\033[0m"
-	@make -C $(PNT_F)
-	@echo "\033[0;32mft_printf module compiled and added to libft.a!\033[0m"
+	@echo "\\033[0;34mCompiling ft_printf module (if needed)...\\033[0m"
+	@$(MAKE) -C $(PNT_F)
+	@echo "\\033[0;34mAdding ft_printf objects to $(NAME)...\\033[0m"
+	ar rcs $(NAME) $(shell find $(PNT_F) -name '*.o')
+	@echo "\\033[0;32mft_printf module compiled and added to $(NAME)!\\033[0m"
 
 # Build get_next_line module
 gnl:
-	@echo "\033[0;34mCompiling get_next_line module...\033[0m"
-	@make -C $(GNL)
-	@echo "\033[0;32mget_next_line module compiled and added to libft.a!\033[0m"
+	@echo "\\033[0;34mCompiling get_next_line module (if needed)...\\033[0m"
+	@$(MAKE) -C $(GNL)
+	@echo "\\033[0;34mAdding get_next_line objects to $(NAME)...\\033[0m"
+	ar rcs $(NAME) $(shell find $(GNL)/source -name '*.o')
+	@echo "\\033[0;32mget_next_line module compiled and added to $(NAME)!\\033[0m"
 
 # Build everything (complete library)
-complete: all bonus
-	@echo "\033[0;34mCompiling additional modules (ft_printf and get_next_line)...\033[0m"
-	@make -C $(PNT_F)
-	@make -C $(GNL)
-	@echo "\033[0;32mComplete libft library compiled successfully!\033[0m"
+complete: all bonus printf gnl
+	@echo "\\033[0;32mComplete libft library compiled successfully with all modules!\\033[0m"
 
 # ========================= UTILITY RULES ==========================
 
