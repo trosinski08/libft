@@ -12,72 +12,54 @@
 
 #include "../include/get_next_line.h"
 
-/**
- * @file get_next_line_bonus.c
- * @brief Implementation of the get_next_line function with bonus features.
- */
-
-/**
- * @brief Extracts the remaining line from a given string.
- *
- * This function takes a string as input and returns the remaining line 
- * after the first newline character. It uses the ft_substr 
- * function to extract the remaining line.
- *
- * @param str The input string.
- * @return The remaining line after the first newline character, or 
- * NULL if an error occurs.
- */
-
-/**
- * @brief Creates a new line from a given string.
- *
- * This function takes a string as input and returns a new line containing 
- * the characters up to and including the first newline character.
- * It uses the ft_substr function to create the new line.
- *
- * @param str The input string.
- * @return The new line containing the characters up to and including 
- * the first newline character, or NULL if an error occurs.
- */
-
-/**
- * @brief Reads the next line from a file descriptor.
- *
- * This function reads the next line from the file descriptor specified 
- * by `fd`.It uses a static array `str` to store the remaining content 
- * of each file descriptor. The function reads data from the file descriptor
- * in chunks of size `BUFFER_SIZE` and appends it to `str[fd]`. 
- * If a newline character is found in `str[fd]`, the function extracts 
- * the line using `line_maker` and updates `str[fd]` using `l_c`.
- * The function continues reading until the end of the file or 
- * an error occurs. If the end of the file is reached and there is 
- * remaining content in `str[fd]`, the function returns the remaining 
- * content as a line.
- *
- * @param fd The file descriptor to read from.
- * @return The next line from the file descriptor, or NULL if an error 
- * occurs or the end of the file is reached.
-*/
-//l_c == line cleaner
 char	*l_c(char *str)
 {
 	char	*rest_line;
+	char	*nl_char_ptr;
+	size_t	nl_pos;
+	size_t	remaining_len;
 
-	rest_line = ft_substr(str, ((ft_strchr(str, '\n') - str) + 1),
-			ft_strlen(str));
-	if (!rest_line)
+	if (!str)
 		return (NULL);
-	return (free(str), rest_line);
+	nl_char_ptr = ft_strchr(str, '\n');
+	if (!nl_char_ptr)
+	{
+		free(str);
+		return (NULL);
+	}
+	nl_pos = nl_char_ptr - str;
+	remaining_len = ft_strlen(str) - (nl_pos + 1);
+	
+	if (remaining_len == 0)
+	{
+		free(str);
+		return (NULL);
+	}
+	
+	rest_line = ft_substr(str, nl_pos + 1, remaining_len);
+	if (!rest_line)
+	{
+		free(str);
+		return (NULL);
+	}
+	
+	free(str);
+	return (rest_line);
 }
 
 char	*line_maker(char *str)
 {
 	char	*new_line;
+	char	*nl_char_ptr;
+	size_t	nl_pos;
 
-	new_line = ft_substr(str, 0, ((ft_strchr(str, '\n') - str) + 1));
-	if (!new_line)
+	if (!str)
 		return (NULL);
+	nl_char_ptr = ft_strchr(str, '\n');
+	if (!nl_char_ptr)
+		return (NULL);
+	nl_pos = nl_char_ptr - str;
+	new_line = ft_substr(str, 0, nl_pos + 1);
 	return (new_line);
 }
 
@@ -89,23 +71,79 @@ char	*get_next_line(int fd)
 	int			r;
 
 	line = NULL;
-	if ((fd < 0) || fd > OPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
-		return (free(str[fd]), str[fd] = NULL, NULL);
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
+	{
+		if (fd >= 0 && fd < OPEN_MAX && str[fd])
+		{
+			free(str[fd]);
+			str[fd] = NULL;
+		}
+		return (NULL);
+	}
+	if (read(fd, 0, 0) == -1)
+	{
+		if (str[fd])
+		{
+			free(str[fd]);
+			str[fd] = NULL;
+		}
+		return (NULL);
+	}
 	r = 1;
 	while (r > 0)
 	{
 		r = read(fd, buff, BUFFER_SIZE);
-		if (r == -1 || (r == 0 && str[fd] == NULL))
-			return (free(str[fd]), str[fd] = NULL, free(line), NULL);
+		if (r == -1)
+		{
+			if (str[fd])
+			{
+				free(str[fd]);
+				str[fd] = NULL;
+			}
+			return (NULL);
+		}
+		if (r == 0 && str[fd] == NULL)
+			return (NULL);
 		buff[r] = '\0';
 		str[fd] = ft_strjoin(str[fd], buff);
+		if (!str[fd])
+			return (NULL);
 		if (ft_strchr(str[fd], '\n'))
-			return (line = line_maker(str[fd]), str[fd] = l_c(str[fd]), line);
+		{
+			line = line_maker(str[fd]);
+			if (!line)
+			{
+				if (str[fd])
+				{
+					free(str[fd]);
+					str[fd] = NULL;
+				}
+				return (NULL);
+			}
+			str[fd] = l_c(str[fd]);
+			return (line);
+		}
 	}
-	if (r == 0 && *str[fd])
+	if (str[fd] && *str[fd] != '\0')
 	{
 		line = ft_strdup(str[fd]);
-		return (free(str[fd]), str[fd] = NULL, line);
+		if (!line)
+		{
+			if (str[fd])
+			{
+				free(str[fd]);
+				str[fd] = NULL;
+			}
+			return (NULL);
+		}
+		free(str[fd]);
+		str[fd] = NULL;
+		return (line);
 	}
-	return (free(str[fd]), str[fd] = NULL, free(line), NULL);
+	if (str[fd])
+	{
+		free(str[fd]);
+		str[fd] = NULL;
+	}
+	return (NULL);
 }
