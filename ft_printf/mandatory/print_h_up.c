@@ -14,13 +14,16 @@
 
 static int	min_conv(t_format *f, int i)
 {
-	f -> type = 0;
-	while (i < f->width)
-		i += write(1, " ", 1);
+	int spaces;
+
+	spaces = f->width - i;
+	if (spaces > 0)
+	{
+		while (spaces--)
+			i += write(1, " ", 1);
+	}
 	return (i);
 }
-	// if (nbr == -ULONG_MAX)
-	// 	c = 11; l33/34
 
 unsigned long	print_hb(unsigned long nbr, unsigned int base, t_format *f)
 {
@@ -49,10 +52,17 @@ unsigned long	print_h_up(unsigned long nbr, unsigned int base, t_format *f)
 	i = 0;
 	len = ft_digit_len(nbr, base, f);
 	f->type = 'X';
-	i += non_minus_conv(nbr, f, len, base);
-	if (f->prec >= 0)
-		i += print_hb(nbr, base, f);
 	if (f->minus == 1)
-		i = (min_conv(f, i));
+	{
+		if (!(nbr == 0 && f->dot && f->prec == 0))
+			i += print_hb(nbr, base, f);
+		i = min_conv(f, i);
+	}
+	else
+	{
+		i += non_minus_conv(nbr, f, len);
+		if (!(nbr == 0 && f->dot && f->prec == 0))
+			i += print_hb(nbr, base, f);
+	}
 	return (i);
 }

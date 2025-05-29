@@ -12,10 +12,8 @@
 
 #include "../include/ft_printf.h"
 
-int	minus_nbr(long nbr, int base, t_format *f)
+int	minus_nbr(t_format *f)
 {
-	(void)nbr;
-	(void)base;
 	int	i;
 
 	i = 0;
@@ -27,10 +25,8 @@ int	minus_nbr(long nbr, int base, t_format *f)
 	return (i);
 }
 
-int	plus_conv(long nbr, int base, t_format *f)
+int	plus_conv(t_format *f)
 {
-	(void)nbr;
-	(void)base;
 	int	i;
 
 	i = 0;
@@ -42,10 +38,8 @@ int	plus_conv(long nbr, int base, t_format *f)
 	return (i);
 }
 
-int	space_conv(long nbr, int base, t_format *f)
+int	space_conv(t_format *f)
 {
-	(void)nbr;
-	(void)base;
 	int	i;
 
 	i = 0;

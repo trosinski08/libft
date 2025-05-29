@@ -33,7 +33,8 @@ SRCS = ./mandatory/ft_printf.c  \
 		./utils/nbr_utils.c
 
 	
-BNS = ./bonus/flag_spec.c
+BNS = ./bonus/flag_spec.c \
+		./bonus/nbr_utils_bonus.c
 	
 #PLIKI OBIEKTOWE
 OBJS = $(SRCS:.c=.o)
@@ -44,13 +45,14 @@ all: $(NAME)
 
 #RULE DO ZROBIENIA BIBLIOTEKI
 $(NAME): $(OBJS)
-	$(MAKE) -C ../
-	cp ../libft.a $(NAME)
-	ar rcs $(NAME) $(OBJS)
+	@$(MAKE) -C ../
+	@cp ../libft.a $(NAME)
+	@touch $(NAME)
+	@ar rcs $(NAME) $(OBJS)
 	
 bonus: $(NAME) $(OBJSB)
-	ar rcs $(NAME) $(OBJSB)
-	# ar rcs $(NAME) $(LIBFT)/libft.a
+	@touch $(NAME)
+	@ar rcs $(NAME) $(OBJSB)
 
 #RULE DO STWORZENIA PLIKOW OBIEKTOWYCH
 %.o: %.c

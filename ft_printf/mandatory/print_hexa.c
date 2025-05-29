@@ -14,9 +14,14 @@
 
 static int	min_conv(t_format *f, int i)
 {
-	f -> type = 0;
-	while (i < f->width)
-		i += write(1, " ", 1);
+	int spaces;
+
+	spaces = f->width - i;
+	if (spaces > 0)
+	{
+		while (spaces--)
+			i += write(1, " ", 1);
+	}
 	return (i);
 }
 
@@ -39,17 +44,6 @@ unsigned long	print_hs(unsigned long nbr, unsigned int base, t_format *f)
 	return (i);
 }
 
-/*
-static int	prec_min(int len, t_format *f, int *i)
-{
-	f->prec = -1;
-	while (*i < f->width - f->plus - f->space)
-		*i += write(1, " ", 1);
-	len = 0;
-	return (len);
-}
-*/
-
 unsigned long	print_hexa(unsigned long nbr, unsigned int base, t_format *f)
 {
 	int		i;
@@ -58,10 +52,17 @@ unsigned long	print_hexa(unsigned long nbr, unsigned int base, t_format *f)
 	i = 0;
 	len = ft_digit_len(nbr, base, f);
 	f->type = 'x';
-	i += non_minus_conv(nbr, f, len, base);
-	if (f->prec >= 0)
-		i += print_hs(nbr, base, f);
 	if (f->minus == 1)
-		i = (min_conv(f, i));
+	{
+		if (!(nbr == 0 && f->dot && f->prec == 0))
+			i += print_hs(nbr, base, f);
+		i = min_conv(f, i);
+	}
+	else
+	{
+		i += non_minus_conv(nbr, f, len);
+		if (!(nbr == 0 && f->dot && f->prec == 0))
+			i += print_hs(nbr, base, f);
+	}
 	return (i);
 }

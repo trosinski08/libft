@@ -49,12 +49,12 @@ void			flag_spec(char fspec, t_format *flags);
 int				ft_putchar(char c);
 int				ft_digit_len(long nbr, int base, t_format *f);
 int				print_digit(long nbr, int base);
-int				minus_nbr(long nbr, int base, t_format *f);
-int				plus_conv(long nbr, int base, t_format *f);
-int				non_minus_conv(long nbr, t_format *f, int len, int base);
+int				minus_nbr(t_format *f);
+int				plus_conv(t_format *f);
+int				non_minus_conv(long nbr, t_format *f, int len);
 // int				zero_conv(long nbr, int base, t_format *f, int len);
-int				prec_conv(long nbr, int base, t_format *f, int len);
-int				space_conv(long nbr, int base, t_format *f);
+// int				prec_conv(long nbr, int base, t_format *f, int len);
+int				space_conv(t_format *f);
 
 // Declarations for functions moved to nbr_utils.c (if they are not static)
 // Ensure these match the non-static functions in nbr_utils.c
@@ -62,11 +62,11 @@ char			determine_padding_char(t_format *f);
 int				get_precision_zeros_len(long nbr, t_format *f, int len);
 int				get_width_padding_len(t_format *f, int len, \
 int precision_zeros);
-int				apply_width_padding_and_sign(long nbr, t_format *f, \
-int base, int width_pad_len_char_pad);
+int				apply_width_padding_and_sign(long nbr, t_format *f,\
+int width_pad_len_char_pad);
 int				print_padding_chars(int count, char pad_char_val);
 int				print_hash_flag_prefix(long nbr, t_format *f);
-// void			zero_val_prec_effect(t_format *f, long nbr, int *current_i_ptr);
+void			zero_val_prec_effect(t_format *f, long nbr, int *current_i_ptr);
 int				ft_itoa_base(char *buffer, unsigned long long n, \
 int base, int uppercase);
 
