@@ -14,7 +14,7 @@
 
 static int	min_conv(t_format *f, int i)
 {
-	int spaces;
+	int	spaces;
 
 	spaces = f->width - i;
 	if (spaces > 0)

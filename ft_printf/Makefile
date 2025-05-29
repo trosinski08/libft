@@ -34,7 +34,8 @@ SRCS = ./mandatory/ft_printf.c  \
 
 	
 BNS = ./bonus/flag_spec.c \
-		./bonus/nbr_utils_bonus.c
+		./bonus/nbr_utils_bonus.c \
+		./bonus/nbr_utils_bonus_2.c
 	
 #PLIKI OBIEKTOWE
 OBJS = $(SRCS:.c=.o)

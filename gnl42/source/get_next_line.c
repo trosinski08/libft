@@ -12,138 +12,77 @@
 
 #include "../include/get_next_line.h"
 
-char	*l_c(char *str)
+static void	clean_static_buffer(char **str, int fd)
 {
-	char	*rest_line;
-	char	*nl_char_ptr;
-	size_t	nl_pos;
-	size_t	remaining_len;
-
-	if (!str)
-		return (NULL);
-	nl_char_ptr = ft_strchr(str, '\n');
-	if (!nl_char_ptr)
+	if (fd >= 0 && fd < OPEN_MAX && str[fd])
 	{
-		free(str);
-		return (NULL);
+		free(str[fd]);
+		str[fd] = NULL;
 	}
-	nl_pos = nl_char_ptr - str;
-	remaining_len = ft_strlen(str) - (nl_pos + 1);
-	
-	if (remaining_len == 0)
-	{
-		free(str);
-		return (NULL);
-	}
-	
-	rest_line = ft_substr(str, nl_pos + 1, remaining_len);
-	if (!rest_line)
-	{
-		free(str);
-		return (NULL);
-	}
-	
-	free(str);
-	return (rest_line);
 }
 
-char	*line_maker(char *str)
+static char	*process_remaining_buffer(char **str, int fd)
 {
-	char	*new_line;
-	char	*nl_char_ptr;
-	size_t	nl_pos;
+	char	*line;
 
-	if (!str)
+	if (!str[fd] || *str[fd] == '\0')
+	{
+		clean_static_buffer(str, fd);
 		return (NULL);
-	nl_char_ptr = ft_strchr(str, '\n');
-	if (!nl_char_ptr)
+	}
+	line = ft_strdup(str[fd]);
+	if (!line)
+	{
+		clean_static_buffer(str, fd);
 		return (NULL);
-	nl_pos = nl_char_ptr - str;
-	new_line = ft_substr(str, 0, nl_pos + 1);
-	return (new_line);
+	}
+	free(str[fd]);
+	str[fd] = NULL;
+	return (line);
+}
+
+static char	*read_and_process(char **str, int fd)
+{
+	char	buff[BUFFER_SIZE + 1];
+	char	*line;
+	int		r;
+
+	r = read(fd, buff, BUFFER_SIZE);
+	if (r == -1)
+		return (clean_static_buffer(str, fd), NULL);
+	if (r == 0 && str[fd] == NULL)
+		return (NULL);
+	buff[r] = '\0';
+	str[fd] = ft_strjoin(str[fd], buff);
+	if (!str[fd])
+		return (NULL);
+	if (ft_strchr(str[fd], '\n'))
+	{
+		line = line_maker(str[fd]);
+		if (!line)
+			return (clean_static_buffer(str, fd), NULL);
+		str[fd] = l_c(str[fd]);
+		return (line);
+	}
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*str[OPEN_MAX];
-	char		*line;
-	char		buff[BUFFER_SIZE + 1];
-	int			r;
+	char		*temp;
 
-	line = NULL;
 	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
-	{
-		if (fd >= 0 && fd < OPEN_MAX && str[fd])
-		{
-			free(str[fd]);
-			str[fd] = NULL;
-		}
-		return (NULL);
-	}
+		return (clean_static_buffer(str, fd), NULL);
 	if (read(fd, 0, 0) == -1)
+		return (clean_static_buffer(str, fd), NULL);
+	while (1)
 	{
-		if (str[fd])
-		{
-			free(str[fd]);
-			str[fd] = NULL;
-		}
-		return (NULL);
+		temp = read_and_process(str, fd);
+		if (temp)
+			return (temp);
+		if (!str[fd] || str[fd][0] == '\0')
+			break ;
 	}
-	r = 1;
-	while (r > 0)
-	{
-		r = read(fd, buff, BUFFER_SIZE);
-		if (r == -1)
-		{
-			if (str[fd])
-			{
-				free(str[fd]);
-				str[fd] = NULL;
-			}
-			return (NULL);
-		}
-		if (r == 0 && str[fd] == NULL)
-			return (NULL);
-		buff[r] = '\0';
-		str[fd] = ft_strjoin(str[fd], buff);
-		if (!str[fd])
-			return (NULL);
-		if (ft_strchr(str[fd], '\n'))
-		{
-			line = line_maker(str[fd]);
-			if (!line)
-			{
-				if (str[fd])
-				{
-					free(str[fd]);
-					str[fd] = NULL;
-				}
-				return (NULL);
-			}
-			str[fd] = l_c(str[fd]);
-			return (line);
-		}
-	}
-	if (str[fd] && *str[fd] != '\0')
-	{
-		line = ft_strdup(str[fd]);
-		if (!line)
-		{
-			if (str[fd])
-			{
-				free(str[fd]);
-				str[fd] = NULL;
-			}
-			return (NULL);
-		}
-		free(str[fd]);
-		str[fd] = NULL;
-		return (line);
-	}
-	if (str[fd])
-	{
-		free(str[fd]);
-		str[fd] = NULL;
-	}
-	return (NULL);
+	return (process_remaining_buffer(str, fd));
 }

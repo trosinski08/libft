@@ -35,7 +35,9 @@ PRINTF_OBJS = \
     $(PNT_F)/mandatory/ft_putchar.o \
     $(PNT_F)/mandatory/put_nbr_base.o \
     $(PNT_F)/mandatory/print_char.o \
-    $(PNT_F)/utils/nbr_utils.o
+    $(PNT_F)/utils/nbr_utils.o \
+    $(PNT_F)/bonus/flag_spec.o \
+    $(PNT_F)/bonus/nbr_utils_bonus.o
 
 # Include directories
 INCLUDES = -I./include -I$(GNL)/include -I$(PNT_F)/include

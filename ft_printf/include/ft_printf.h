@@ -62,7 +62,7 @@ char			determine_padding_char(t_format *f);
 int				get_precision_zeros_len(long nbr, t_format *f, int len);
 int				get_width_padding_len(t_format *f, int len, \
 int precision_zeros);
-int				apply_width_padding_and_sign(long nbr, t_format *f,\
+int				apply_width_padding_and_sign(long nbr, t_format *f, \
 int width_pad_len_char_pad);
 int				print_padding_chars(int count, char pad_char_val);
 int				print_hash_flag_prefix(long nbr, t_format *f);

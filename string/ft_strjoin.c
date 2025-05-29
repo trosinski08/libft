@@ -6,7 +6,7 @@
 /*   By: trosinsk <trosinsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:57:42 by trosinsk          #+#    #+#             */
-/*   Updated: 2024/07/01 by Copilot         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:52:20 by trosinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,45 +23,52 @@ which is the result of the concatenation of ’s1’ and ’s2’.
  * @param s1 The first string to be concatenated. Can be NULL.
  * @param s2 The second string to be concatenated. Can be NULL.
  * @return The concatenated string, or NULL if memory allocation fails.
- *         If s1 and s2 are both NULL or effectively empty, returns an empty string.
+ *         If s1 and s2 are both NULL or effectively empty,
+ *         returns an empty string.
  */
+
+static char	*join_helper(char *d, const char *s2, size_t i, size_t j)
+{
+	while (s2[j])
+	{
+		d[i + j] = s2[j];
+		j++;
+	}
+	return (d);
+}
+
+static size_t	str_checker(const char *s)
+{
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*d;
-	size_t	s1_len;
-	size_t	s2_len;
 	size_t	i;
 	size_t	j;
 
-	s1_len = 0;
-	if (s1)
-		s1_len = ft_strlen(s1);
-	s2_len = 0;
-	if (s2)
-		s2_len = ft_strlen(s2);
-	d = (char *)malloc(s1_len + s2_len + 1);
+	d = (char *)malloc(str_checker(s1) + str_checker(s2) + 1);
 	if (!d)
-	{
-		return (NULL); // Corrected: return NULL on malloc failure
-	}
+		return (NULL);
 	i = 0;
-	if (s1) // Copy s1 if it exists
+	if (s1)
 	{
-		while (i < s1_len)
+		while (i < str_checker(s1))
 		{
 			d[i] = s1[i];
 			i++;
 		}
 	}
 	j = 0;
-	if (s2) // Copy s2 if it exists
-	{
-		while (j < s2_len)
-		{
-			d[i + j] = s2[j];
-			j++;
-		}
-	}
-	d[i + j] = '\0'; // Null-terminate
-	return (d);
+	if (s2)
+		d = join_helper(d, s2, i, j);
+	return (d[i + j] = '\0', d);
 }
