@@ -108,6 +108,16 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 
 /**
+ * @brief Checks if a character is a whitespace character (isspace replacement)
+ *
+ * Tests if the character c is a whitespace char (space, tab, newline, etc.).
+ * 
+ * @param c The character to test
+ * @return Non-zero if c is a whitespace character, zero otherwise
+ */
+int		ft_isspace(int c);
+
+/**
  * @brief Converts an integer to a string
  *
  * Allocates memory and returns a string representing the integer num.

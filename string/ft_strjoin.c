@@ -54,8 +54,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*d;
 	size_t	i;
 	size_t	j;
+	size_t	s2_len;
 
-	d = (char *)malloc(str_checker(s1) + str_checker(s2) + 1);
+	s2_len = str_checker(s2);
+	d = (char *)malloc(str_checker(s1) + s2_len + 1);
 	if (!d)
 		return (NULL);
 	i = 0;
@@ -70,5 +72,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (s2)
 		d = join_helper(d, s2, i, j);
-	return (d[i + j] = '\0', d);
+	d[i + s2_len] = '\0';
+	return (d);
 }

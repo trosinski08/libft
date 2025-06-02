@@ -38,6 +38,12 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+/* Function declarations */
+char	**get_buffer(void);
+void	clean_static_buffer(char **str, int fd);
+char	*line_maker(char *str);
+char	*l_c(char *str);
+
 /**
  * @brief Reads a line from a file descriptor
  * 
@@ -53,29 +59,17 @@
 char	*get_next_line(int fd);
 
 /**
- * @brief Extract the characters after a newline from a string
+ * @brief Flushes all static buffers used by get_next_line
  * 
- * This function takes a string and returns a new string containing
- * all characters after the first newline character. It's used internally
- * by get_next_line to manage buffer content between calls.
- * 
- * @param str The source string
- * @return A newly allocated string with all characters after the first newline,
- *         or NULL if there's no newline or an error occurs
+ * This function clears and frees all static buffers used by get_next_line.
+ * Call this function before program exit to prevent memory leaks.
  */
-char	*l_c(char *str);
+void	flush_gnl_buffers(void);
 
-/**
- * @brief Extract a single line from a string
- * 
- * This function takes a string and returns a new string containing
- * all characters up to and including the first newline character,
- * or the entire string if there's no newline.
- * 
- * @param str The source string
- * @return A newly allocated string containing the line, or NULL if
- *         the string is empty or an error occurs
- */
+/* Utility functions for get_next_line */
+char	**get_buffer(void);
+void	clean_static_buffer(char **str, int fd);
 char	*line_maker(char *str);
+char	*l_c(char *str);
 
 #endif

@@ -35,20 +35,21 @@ PRINTF_OBJS = \
     $(PNT_F)/mandatory/ft_putchar.o \
     $(PNT_F)/mandatory/put_nbr_base.o \
     $(PNT_F)/mandatory/print_char.o \
-    $(PNT_F)/utils/nbr_utils.o \
-    $(PNT_F)/bonus/flag_spec.o \
-    $(PNT_F)/bonus/nbr_utils_bonus.o
+    $(PNT_F)/utils/nbr_utils.o
 
 # Include directories
 INCLUDES = -I./include -I$(GNL)/include -I$(PNT_F)/include
 
 #SOURCE FILES LIST
-SRCS = ./char/ft_atoi.c \
+SRCS = ./gnl42/source/get_next_line.c \
+		./gnl42/source/get_next_line_utils.c \
+		./char/ft_atoi.c \
 		./char/ft_isalnum.c \
 		./char/ft_isalpha.c \
 		./char/ft_isascii.c \
 		./char/ft_isdigit.c \
 		./char/ft_isprint.c \
+		./char/ft_isspace.c \
 		./char/ft_itoa.c \
 		./char/ft_tolower.c \
 		./char/ft_toupper.c \
